@@ -1,3 +1,8 @@
+/*
+ * Written by: John Hardy and Ryan Frizelle
+ */
+
+package Select;
 
 import static org.junit.Assert.assertEquals;
 
