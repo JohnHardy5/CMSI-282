@@ -98,6 +98,6 @@ class Select {
 			return;
 		}
 		int output = kthSmallest(arr, k);
-		System.out.println("Kth smallest: " + output);
+		System.out.println(output);
 	}
 } 

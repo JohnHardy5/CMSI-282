@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class makeAndTestSomeInts {
 	
-	static final int NUM_INTS = 10;
+	static final int NUM_INTS = 100;
 	static final String FILE_LOCATION = "C:\\Users\\track\\git\\CMSI-282\\src\\Select\\SelectInputs.txt";
 	
 	static void createInts() {
