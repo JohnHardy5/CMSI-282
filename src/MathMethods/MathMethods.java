@@ -18,20 +18,19 @@ public class MathMethods {
 	}
 	
 	static java.math.BigInteger fibonacci(int n) {
-		BigInteger first = new BigInteger("0");
-		BigInteger second = new BigInteger("1");
-		if (n == 1) {return second;}
-		BigInteger third = new BigInteger("0");
-		for (int i = 1; i < n; i++) {
-			third = first.add(second);
-			first = second;
-			second = third;
+		BigInteger a = new BigInteger("0");
+		BigInteger b = new BigInteger("1");
+		for (int i = 0; i < n; i++) {
+			BigInteger temp = a;
+			a = b;
+			b = temp.add(b);
 		}
-		return third;
+		return a;
 	}
 	
 	static long gcd(long m, long n) {
-		return 0L;
+		if (n == 0) { return m;}
+		return gcd(n, m % n);
 	}
 	
 	static long lcm(long m, long n) {
@@ -41,7 +40,7 @@ public class MathMethods {
 	static double poly(double x, double[] coeff) {
 		double result = coeff[coeff.length - 1];
 		for (int i = coeff.length - 2; i >= 0; i--) {
-			result = (x * result) + coeff[i];
+			result = (x * result) + coeff[i];//Backwards Horner's rule
 		}
 		return result;
 	}
@@ -84,10 +83,17 @@ public class MathMethods {
     		System.out.println(power(Double.parseDouble(args[1]), Integer.parseInt(args[2])));
     		break;
     	case "root":
-    		System.out.println(root(Integer.parseInt(args[1]), Double.parseDouble(args[2]), Double.parseDouble(args[3])));
+    		System.out.println(root(
+    				Integer.parseInt(args[1]),
+    				Double.parseDouble(args[2]),
+    				Double.parseDouble(args[3]
+    		)));
     		break;
     	case "sqrt":
-    		System.out.println(sqrt(Double.parseDouble(args[1]), Double.parseDouble(args[2])));
+    		System.out.println(sqrt(
+    				Double.parseDouble(args[1]), 
+    				Double.parseDouble(args[2])
+    		));
     		break;
     	default:
     		throw new IllegalArgumentException("Given operation was not specified correctly.");
