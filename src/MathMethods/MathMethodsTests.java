@@ -68,6 +68,7 @@ public class MathMethodsTests {
 	
 	@Test
 	public void testRoot() {
+		assertEquals(-0.9, MathMethods.root(3, -0.729, 0.001), 0.001);
 		assertEquals(0.2, MathMethods.root(1, 0.2, 0.001), 0.001);
 		assertEquals(3.0, MathMethods.root(3, 27.0, 0.001), 0.001);
 		assertEquals(2.0, MathMethods.root(24, 16777216.0, 0.001), 0.001);

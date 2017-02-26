@@ -60,6 +60,11 @@ public class MathMethods {
 	static double root(int n, double x, double epsilon) {
 		if (n <= 0 || (x < 0 && n % 2 == 0) ) {throw new IllegalArgumentException("BAD DATA");}
 		if (x == 1.0) {return 1.0;}
+		boolean isNegative = false;
+		if (x < 0) {
+			isNegative = true;
+			x *= -1;
+		}
 		double lowerBnd = 0;
 		double upperBnd = (x > 0 && x < 1) ? 1.0 : x;
 		double midPnt = setMidPoint(lowerBnd, upperBnd);
@@ -72,6 +77,9 @@ public class MathMethods {
 			}
 			midPnt = setMidPoint(lowerBnd, upperBnd);
 			estimate = power(midPnt, n);
+		}
+		if (isNegative) {
+			midPnt *= -1;
 		}
 		return midPnt;
 	}
