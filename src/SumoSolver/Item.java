@@ -1,5 +1,5 @@
 /*
- * Written by: John  H Hardy
+ * Written by: John H Hardy
  */
 
 package SumoSolver;

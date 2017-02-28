@@ -36,10 +36,10 @@ public class SumoSolverTests {
 	
 	@Test
 	public void testBigSumoSolve() {
-		int[] costs = new int[] {200, 300, 400};
-		int[] weights = new int[] {500, 600, 700};
-		int maxCost = 700;
-		int[] expected = new int[] {0, 0, 300, 600, 400, 700};
+		int[] costs = new int[] {3000, 4000, 2000};
+		int[] weights = new int[] {5000, 6000, 7000};
+		int maxCost = 7000;
+		int[] expected = new int[] {0, 0, 4000, 6000, 2000, 7000};
 		int[] given = SumoSolver.sumoSolve(costs, weights, maxCost);
 		System.out.println("Test: " + Arrays.toString(given));
 		assertArrayEquals(expected, given);
@@ -51,6 +51,28 @@ public class SumoSolverTests {
 		int[] weights = new int[] {12, 35, 33, 22};
 		int maxCost = 18;
 		int[] expected = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
+		int[] given = SumoSolver.sumoSolve(costs, weights, maxCost);
+		System.out.println("Test: " + Arrays.toString(given));
+		assertArrayEquals(expected, given);
+	}
+	
+	@Test
+	public void testOneSumoSolve() {
+		int[] costs = new int[] {25};
+		int[] weights = new int[] {35};
+		int maxCost = 1234;
+		int[] expected = new int[] {25, 35};
+		int[] given = SumoSolver.sumoSolve(costs, weights, maxCost);
+		System.out.println("Test: " + Arrays.toString(given));
+		assertArrayEquals(expected, given);
+	}
+	
+	@Test
+	public void testUnreachableSumoSolve() {
+		int[] costs = new int[] {20, 30};
+		int[] weights = new int[] {12, 35};
+		int maxCost = 23;
+		int[] expected = new int[] {20, 12, 0, 0};
 		int[] given = SumoSolver.sumoSolve(costs, weights, maxCost);
 		System.out.println("Test: " + Arrays.toString(given));
 		assertArrayEquals(expected, given);
