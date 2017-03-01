@@ -77,5 +77,4 @@ public class SumoSolverTests {
 		System.out.println("Test: " + Arrays.toString(given));
 		assertArrayEquals(expected, given);
 	}
-	
 }

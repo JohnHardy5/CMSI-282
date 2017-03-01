@@ -69,11 +69,11 @@ public class SumoSolver {
 			costs = new int[(args.length - 1) / 2];
 			weights = new int[(args.length - 1) / 2];
 			maxCost = Integer.parseInt(args[args.length - 1]);
-			if (maxCost < 0) {throw new IllegalArgumentException();}
+			if (maxCost < 1) {throw new IllegalArgumentException();}
 			for (int i = 0; i < args.length - 1; i += 2) {
 				costs[i / 2] = Integer.parseInt(args[i]);
 				weights[i / 2] = Integer.parseInt(args[i + 1]);
-				if (costs[i / 2] < 0 || weights[i / 2] < 0) {throw new IllegalArgumentException();}
+				if (costs[i / 2] < 1 || weights[i / 2] < 1) {throw new IllegalArgumentException();}
 			}
 		} catch (Exception e) {
 			System.out.println("BAD DATA");
