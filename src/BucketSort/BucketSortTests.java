@@ -1,3 +1,6 @@
+/*
+ * Written by: John Hardy
+ */
 package BucketSort;
 
 import static org.junit.Assert.*;

@@ -1,3 +1,6 @@
+/*
+ * Written by: John Hardy
+ */
 package BucketSort;//TODO: Remove packaging
 
 import java.util.ArrayList;
