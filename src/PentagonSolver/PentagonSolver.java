@@ -2,92 +2,81 @@ package PentagonSolver;
 
 public class PentagonSolver {
 	
-	private static int[] pentValues = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-	private static void swapValues(int p, int q) {
-		//System.out.println("Swapping values " + p + " and " + q + " -> " + outputInfo());
-		int temp = pentValues[p];
-		pentValues[p] = pentValues[q];
-		pentValues[q] = temp;
+	private static int[] pentArr = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	
+	public static void swapValues(int p, int q) {
+		int temp = pentArr[p];
+		pentArr[p] = pentArr[q];
+		pentArr[q] = temp;
 	}
 	
-	private static void checkValid() {
-		int firstSide = pentValues[0] + pentValues[1] + pentValues[2];
-		for (int i = 3; i < pentValues.length; i += 3) {
-			int currSide = pentValues[i] + pentValues[i + 1] + pentValues[i + 2];
-			if (currSide != firstSide) {
-				return;
+	private static int largestK() {
+		for (int k = pentArr.length - 2; k >= 0; k--) {
+			if (pentArr[k] < pentArr[k + 1]) {
+				return k;
 			}
 		}
-		System.out.println("Found a valid combination!: ");
-		System.out.println(outputInfo());
+		return -1;
 	}
 	
-	private static int findNextPos() {
-		for (int i = pentValues.length - 2; i > 0; i--) {
-			if (pentValues[i] < pentValues[i + 1]) {
+	private static int largestI(int k) {
+		for (int i = pentArr.length - 1; i > k; i--) {
+			if (pentArr[k] < pentArr[i]) {
 				return i;
 			}
 		}
 		return -1;
 	}
 	
-	private static int findNextBig(int p) {
-		//int currVal = pentValues[p];
-		//System.out.println("FindNextBig: currVal: " + currVal);
-		//int currLargest = 9;//Set to largest value in pentValues
-		//int largestPos = 9;
-		for (int i = pentValues.length - 1; i > p; i--) {
-			if (pentValues[p] < pentValues[i]) {
-				return i;
+	private static void reverse(int k) {
+		k = k + 1;
+		int j = pentArr.length - 1;
+		while (k < j) {
+			swapValues(k, j);
+			k++;
+			j--;
+		}
+	}
+	
+	private static boolean isValid() {
+		int side = pentArr[8] + pentArr[9] + pentArr[0];
+		for (int i = 0; i < pentArr.length - 3; i += 2) {
+			if (pentArr[i] + pentArr[i + 1] + pentArr[i + 2] != side) {
+				return false;
 			}
 		}
-		return -1;
+		System.out.println(output());
+		return true;
 	}
 	
-	private static void reverseValues(int p) {
-		//System.out.println("Reversing values starting at: " + p);
-		int j = 1;
-		int middle = (int)Math.ceil((pentValues.length - p) / 2);
-		for (int i = p + 1; i <= p + middle; i++) {
-			swapValues(i, pentValues.length - j);
-			j++;
-		}
-		//System.out.println(outputInfo());
-	}
-	
-	private static String outputInfo() {
-		String str = "[ ";
-		for (int i = 0; i < pentValues.length; i++) {
-			str = str + pentValues[i];
-			if (i != pentValues.length - 1) {
+	private static String output() {
+		String str = "[";
+		for (int i = 0; i < pentArr.length; i++) {
+			str = str + pentArr[i];
+			if (i < pentArr.length - 1) {
 				str = str + ", ";
 			}
 		}
-		str = str + " ]";
+		str = str + "]";
 		return str;
 	}
 	
 	public static void main(String[] args) {
-		int currPos = pentValues.length - 1;
-		//int j = 10;
-		while (currPos != -1) {
-			if (pentValues[pentValues.length - 2] < pentValues[pentValues.length - 1]) {//if last two are in order, swap them
-				swapValues(pentValues.length - 1, pentValues.length - 2);
-				checkValid();
+		int counter = 0;
+		int k = largestK();
+		while (k != -1) {
+			//System.out.println("k: " + k);
+			int i = largestI(k);
+			//System.out.println("i:" + i);
+			swapValues(k, i);
+			//System.out.println("Post swap: " + output());
+			reverse(k);
+			if (isValid()) {
+				counter++;
 			}
-			currPos = findNextPos();
-			//System.out.println("New current position " + currPos);
-			swapValues(currPos, findNextBig(currPos));
-			//System.out.println(outputInfo());
-			reverseValues(currPos);
-			checkValid();
-			
-			//j--;
-			//currPos = 0;//TODO: Remove hard stop.
-			//System.out.println(outputInfo());
-			
-			currPos = findNextPos();
+			//System.out.println("Post reverse: " + output());
+			k = largestK();
 		}
+		System.out.println("Number of correct solutions: " + counter);
 	}
 }
