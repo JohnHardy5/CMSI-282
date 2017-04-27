@@ -1,3 +1,7 @@
+/*
+ * Written by: John Hardy
+ */
+
 package PentagonSolver;
 
 public class PentagonSolver {
@@ -65,16 +69,12 @@ public class PentagonSolver {
 		int counter = 0;
 		int k = largestK();
 		while (k != -1) {
-			//System.out.println("k: " + k);
 			int i = largestI(k);
-			//System.out.println("i:" + i);
 			swapValues(k, i);
-			//System.out.println("Post swap: " + output());
 			reverse(k);
 			if (isValid()) {
 				counter++;
 			}
-			//System.out.println("Post reverse: " + output());
 			k = largestK();
 		}
 		System.out.println("Number of correct solutions: " + counter);
