@@ -2,7 +2,9 @@ package BucketSort;//TODO: Remove packaging
 
 import java.util.ArrayList;
 
-//Acts as a container to hold our data.
+/*
+ * Acts as a container to hold our data.
+ */
 public class Bucket {
 	private ArrayList<Double> values;
 	
@@ -15,7 +17,7 @@ public class Bucket {
 	}
 	
 	/*
-	 * Uses insertion sort to sort the bucket in ascending order.
+	 * Uses insertion sort to sort the contents of the bucket in ascending order.
 	 */
 	public void sort() {
 		if (values.size() < 2) {return;}

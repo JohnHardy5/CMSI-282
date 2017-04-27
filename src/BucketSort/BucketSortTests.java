@@ -28,7 +28,7 @@ public class BucketSortTests {
 	@Test
 	public void testSmall() {
 		ArrayList<Double> data = new ArrayList<Double>();
-		for (double i = 1.0; i >= 0.0; i -= 0.05) {
+		for (double i = 1.0; i >= 0.0; i -= 0.005) {
 			data.add(i);
 		}
 		BucketSort.sort(data, 0.0, 1.0);
@@ -38,7 +38,7 @@ public class BucketSortTests {
 	@Test
 	public void testBig() {
 		ArrayList<Double> data = new ArrayList<Double>();
-		for (double i = 1000.0; i >= 0.0; i -= 10.0) {
+		for (double i = 1000000.0; i >= 0.0; i -= 10000.0) {
 			data.add(i);
 		}
 		BucketSort.sort(data, 0.0, 1000.0);
